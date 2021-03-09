@@ -35,7 +35,7 @@
 ### Association
 
 - belongs_to :user
-- has_one :purchase-record
+- has_one :purchase_record
 - has_one_attached :image
 
 ## purchase_records テーブル
@@ -53,16 +53,15 @@
 
 ## addresses テーブル
 
-| Column       | Type       | Options                        |
-| ------------ | ---------- | ------------------------------ |
-| user         | references | null: false, foreign_key: true |
-| item         | references | null: false, foreign_key: true |
-| postal_code  | string     | null: false                    |
-| area_id      | integer    | null: false                    |
-| cities       | string     | null: false                    |
-| house_number | string     | null: false                    |
-| building     | string     |                                |
-| phone_number | string     | null: false                    |
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| postal_code     | string     | null: false                    |
+| area_id         | integer    | null: false                    |
+| cities          | string     | null: false                    |
+| house_number    | string     | null: false                    |
+| building        | string     |                                |
+| phone_number    | string     | null: false                    |
+| purchase_record | references | null: false, foreign_key: true |
 
 ### Association
 
