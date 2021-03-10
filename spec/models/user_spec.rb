@@ -86,8 +86,87 @@ RSpec.describe User, type: :model do
       expect(@user.errors.full_messages).to include("Family name can't be blank")
     end
 
+    it "苗字が半角だとダメ" do
+      @user.family_name = 'bob'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Family name is invalid")
+    end
 
+    it "名前が空だとダメ" do
+      @user.first_name = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name can't be blank")
+    end
 
+    it "名前が半角だとダメ" do
+      @user.first_name = 'bob'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name is invalid")
+    end
+
+    it "名前（カナ）が空だとダメ" do
+      @user.first_name_kana = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana can't be blank")
+    end
+
+    it "名前（カナ）がひらがなだとダメ" do
+      @user.first_name_kana = 'こんにちは'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana is invalid")
+    end
+
+    it "名前（カナ）が漢字だとダメ" do
+      @user.first_name_kana = '今日'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana is invalid")
+    end
+
+    it "名前（カナ）が英語だとダメ" do
+      @user.first_name_kana = 'bob'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("First name kana is invalid")
+    end
+
+    it "名前（カナ）がカタカナなら成功" do
+      @user.first_name_kana = 'ゴロウ'
+      expect(@user).to be_valid
+    end
+
+    it "苗字（カナ）が空だとダメ" do
+      @user.family_name_kana = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Family name kana can't be blank")
+    end
+
+    it "苗字（カナ）がひらがなだとダメ" do
+      @user.family_name_kana = 'こんにちは'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Family name kana is invalid")
+    end
+
+    it "苗字（カナ）が漢字だとダメ" do
+      @user.family_name_kana = '今日'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Family name kana is invalid")
+    end
+
+    it "名前（カナ）が英語だとダメ" do
+      @user.family_name_kana = 'bob'
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Family name kana is invalid")
+    end
+
+    it "名前（カナ）がカタカナなら成功" do
+      @user.family_name_kana = 'ゴロウ'
+      expect(@user).to be_valid
+    end
+
+    it "birth_dateが空だとダメ" do
+      @user.birth_date = ''
+      @user.valid?
+      expect(@user.errors.full_messages).to include("Birth date can't be blank")
+    end
 
   end  
 end
