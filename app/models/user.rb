@@ -4,9 +4,9 @@ class User < ApplicationRecord
 
   with_options presence: true do
     validates :nickname
-    validates :first_name, format: /\A[ぁ-んァ-ン一-龥]/
+    validates :first_name, format: /\A[ぁ-んァ-ン一-龥々]+\z/
     validates :first_name_kana, format: /\A[ァ-ヶー－]+\z/
-    validates :family_name, format: /\A[ぁ-んァ-ン一-龥]/
+    validates :family_name, format: /\A[ぁ-んァ-ン一-龥々]+\z/
     validates :family_name_kana, format: /\A[ァ-ヶー－]+\z/
     validates :birth_date 
   end
