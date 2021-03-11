@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :furimadate
   has_one_attached :image
 
-  validates :name, :info, presence: true
+  validates :name, :info, :image, presence: true
   validates :price, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
 
   validates :category_id, :status_id, :cost_id, :area_id, :furimadate_id, numericality: { other_than: 1 } 
