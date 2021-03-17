@@ -59,7 +59,7 @@ class ItemsController < ApplicationController
 
   def redirectroot
     if @item.purchase_record.present?
-      recirect root_path
+      redirect_to root_path
     end
   end
 
