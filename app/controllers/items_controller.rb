@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy] 
   before_action :itemsuite, only: [:edit, :update, :show, :destroy]
   before_action :redirectindex, only: [:edit, :update]
+  before_action :redirectroot, only: [:edit, :update]
 
   def new
     @item = Item.new
@@ -55,5 +56,11 @@ class ItemsController < ApplicationController
       redirect_to action: :index
     end
   end  
+
+  def redirectroot
+    if @item.purchase_record.present?
+      recirect root_path
+    end
+  end
 
 end
