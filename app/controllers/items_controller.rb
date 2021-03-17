@@ -51,7 +51,7 @@ class ItemsController < ApplicationController
   end
 
   def redirectindex
-    unless current_user.id == @item.user_id
+    if current_user.id != @item.user_id || @item.purchase_record.present?
       redirect_to action: :index
     end
   end  
